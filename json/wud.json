@@ -1,0 +1,48 @@
+{
+  "name": "What's Up Docker",
+  "slug": "wud",
+  "categories": [3],
+  "date_created": "2026-10-17",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 3000,
+  "documentation": "https://getwud.app/",
+  "website": "https://getwud.app/",
+  "repository": "https://github.com/getwud/wud",
+  "platforms": ["pve"],
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/wud.webp",
+  "description": "What's Up Docker (WUD) monitors containers on one or more Docker hosts, detects new image versions, and can notify you or update containers automatically through configurable triggers.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/wud.sh",
+      "config_path": "/opt/wud/.env",
+      "resources": {
+        "cpu": 2,
+        "ram": 2048,
+        "hdd": 6,
+        "os": "Debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "app_vars": [
+    { "name": "var_admin_user", "label": "Admin Username", "type": "text", "default": "admin" },
+    { "name": "var_admin_password", "label": "Admin Password", "type": "password", "secret": true }
+  ],
+  "notes": [
+    {
+      "text": "The admin login is in /opt/wud/.env (WUD_AUTH_ADMIN_USER / WUD_AUTH_ADMIN_PASSWORD).",
+      "type": "info"
+    },
+    {
+      "text": "No Docker runs in this container. Add your Docker hosts as watchers in /opt/wud/.env, e.g. WUD_WATCHER_MYHOST_HOST=192.168.1.10, then restart wud.",
+      "type": "warning"
+    }
+  ]
+}
